@@ -7,18 +7,18 @@ ENV MEDIAWIKI_FULL_VERSION 1.29.1
 RUN set -x; \
 	apt-get update \
 	&& apt-get install -y --no-install-recommends \
-	g++ \
-	libicu52 \
-	libicu-dev \
-	libapache2-mod-php7.0 \
-	libapache2-mod-rpaf \
-	php7.0-curl \
-	php7.0-mcrypt \
-	php7.0-json \
-	nodejs \
-	apt-transport-http \
-	parsoid \
-	systemutils \
+		g++ \
+		libicu52 \
+		libicu-dev \
+		libapache2-mod-php7.0 \
+		libapache2-mod-rpaf \
+		php7.0-curl \
+		php7.0-mcrypt \
+		php7.0-json \
+		nodejs \
+		apt-transport-http \
+		parsoid \
+		sysvinit-utils \
 	&& pecl install intl \
 	&& echo extension=intl.so >> /usr/local/etc/php/conf.d/ext-intl.ini \
 	&& apt-get purge -y --auto-remove g++ libicu-dev \

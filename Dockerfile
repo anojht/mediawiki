@@ -21,9 +21,6 @@ RUN set -x; \
 		libicu-dev \
 		libapache2-mod-php7.0 \
 		libapache2-mod-rpaf \
-		php7.0-curl \
-		php7.0-mcrypt \
-		php7.0-json \
 		nodejs \
 		sysvinit-utils \
 	&& apt-key advanced --keyserver keys.gnupg.net --recv-keys 90E9F83F22250DD7 \

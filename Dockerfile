@@ -25,7 +25,7 @@ RUN set -x; \
 		libapache2-mod-rpaf \
 		sysvinit-utils \
 		libssl-dev \
-		libcurl14-openssl-dev \
+		libcurl4-openssl-dev \
 		pkg-config \
 	&& apt-key advanced --keyserver keys.gnupg.net --recv-keys 90E9F83F22250DD7 \
         && echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list \

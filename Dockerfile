@@ -19,7 +19,6 @@ RUN set -x; \
 		g++ \
 		libicu52 \
 		libicu-dev \
-		libapache2-mod-php7.0 \
 		libapache2-mod-rpaf \
 		nodejs \
 		sysvinit-utils \
@@ -34,6 +33,15 @@ RUN set -x; \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install mysqli opcache
+
+RUN { \
+		echo 'opcache.memory_consumption=128'; \
+		echo 'opcache.interned_strings_buffer=8'; \
+		echo 'opcache.max_accelerated_files=4000'; \
+		echo 'opcache.revalidate_freq=60'; \
+		echo 'opcache.fast_shutdown=1'; \
+		echo 'opcache.enable_cli=1'; \
+	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 RUN set -x; \
 	apt-get update \

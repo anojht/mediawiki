@@ -8,13 +8,13 @@ RUN set -x; \
 	apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		wget \
-	echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
-	echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
-	cd /tmp \
-	wget "https://www.dotdeb.org/dotdeb.gpg" \
-	apt-key add dotdeb.gpg \
-	rm dotdeb.gpg \
-	apt-get update \
+	&& echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
+	&& echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
+	&& cd /tmp \
+	&& wget "https://www.dotdeb.org/dotdeb.gpg" \
+	&& apt-key add dotdeb.gpg \
+	&& rm dotdeb.gpg \
+	&& apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		g++ \
 		libicu52 \

@@ -21,7 +21,6 @@ RUN set -x; \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		g++ \
-		libicu52 \
 		libicu-dev \
 		libapache2-mod-rpaf \
 		sysvinit-utils \
@@ -33,10 +32,14 @@ RUN set -x; \
 	&& apt-get purge -y --auto-remove g++ libicu-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-configure intl \
-&& docker-php-ext-install mysqli opcache curl json zlib mbstring intl mcrypt \
-&& echo extension=intl.so >> /usr/local/etc/php/conf.d/ext-intl.ini \
-&& docker-php-ext-enable mysqli opcache curl json zlib mbstring intl mcrypt
+# RUN docker-php-ext-configure intl \
+RUN docker-php-ext-install mysqli opcache curl json zlib mbstring intl mcrypt \
+# && echo extension=intl.so >> /usr/local/etc/php/conf.d/ext-intl.ini \
+# && docker-php-ext-enable mysqli opcache curl json zlib mbstring intl mcrypt
+
+RUN pecl channel-update pecl.php.net \
+	&& pecl install apcu-5.1.8 \
+	&& docker-php-ext-enable apcu
 
 RUN { \
 		echo 'opcache.memory_consumption=128'; \

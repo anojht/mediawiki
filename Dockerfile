@@ -24,6 +24,9 @@ RUN set -x; \
 		libicu-dev \
 		libapache2-mod-rpaf \
 		sysvinit-utils \
+		libssl-dev \
+		libcurl14-openssl-dev \
+		pkg-config \
 	&& apt-key advanced --keyserver keys.gnupg.net --recv-keys 90E9F83F22250DD7 \
         && echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list \
         && apt-get install -y --no-install-recommends apt-transport-https \

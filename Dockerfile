@@ -74,7 +74,7 @@ RUN echo Include /etc/apache2/mediawiki.conf >> /etc/apache2/apache2.conf
 
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN set -x; \
-	&& chmod +x /entrypoint.sh
+	chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]

@@ -21,7 +21,7 @@ RUN set -x; \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		g++ \
-		libicu \
+		libicu52 \
 		libicu-dev \
 		libapache2-mod-rpaf \
 		sysvinit-utils \

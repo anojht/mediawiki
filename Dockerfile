@@ -5,10 +5,10 @@ ENV MEDIAWIKI_VERSION 1.29
 ENV MEDIAWIKI_FULL_VERSION 1.29.1
 
 RUN set -x; \
-	echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
-	echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
+	echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
+	echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
 	cd /tmp \
-	wget https://www.dotdeb.org/dotdeb.gpg \
+	wget "https://www.dotdeb.org/dotdeb.gpg" \
 	apt-key add dotdeb.gpg \
 	rm dotdeb.gpg \
 	apt-get update \

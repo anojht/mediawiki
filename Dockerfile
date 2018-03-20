@@ -34,8 +34,7 @@ RUN set -x; \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-configure intl \
-
-RUN docker-php-ext-install mysqli opcache curl json zlib mbstring intl mcrypt
+&& docker-php-ext-install mysqli opcache curl json zlib mbstring intl mcrypt \
 
 RUN { \
 		echo 'opcache.memory_consumption=128'; \

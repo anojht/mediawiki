@@ -24,15 +24,15 @@ RUN set -x; \
 		sysvinit-utils \
 	&& apt-key advanced --keyserver keys.gnupg.net --recv-keys 90E9F83F22250DD7 \
         && echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list \
-        && apt-get install apt-transport-https \
+        && apt-get install -y --no-install-recommends apt-transport-https \
         && apt-get update \
-        && apt-get install parsoid \
+        && apt-get install -y --no-install-recommends parsoid \
 	&& pecl install intl \
 	&& echo extension=intl.so >> /usr/local/etc/php/conf.d/ext-intl.ini \
 	&& apt-get purge -y --auto-remove g++ libicu-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install mysqli opcache
+RUN docker-php-ext-install mysqli opcache curl json zlib mbstring
 
 RUN { \
 		echo 'opcache.memory_consumption=128'; \

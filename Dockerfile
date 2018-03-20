@@ -11,6 +11,10 @@ RUN set -x; \
 	&& echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
 	&& echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
 	&& cd /tmp \
+	&& curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh \
+	&& chmod +x nodesource_setup.sh \
+	&& ./nodesource_setup.sh
+	&& apt-get install nodejs build-essential
 	&& wget "https://www.dotdeb.org/dotdeb.gpg" \
 	&& apt-key add dotdeb.gpg \
 	&& rm dotdeb.gpg \
@@ -20,7 +24,6 @@ RUN set -x; \
 		libicu52 \
 		libicu-dev \
 		libapache2-mod-rpaf \
-		nodejs \
 		sysvinit-utils \
 	&& apt-key advanced --keyserver keys.gnupg.net --recv-keys 90E9F83F22250DD7 \
         && echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list \

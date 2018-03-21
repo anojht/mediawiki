@@ -21,6 +21,8 @@ RUN set -x; \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		g++ \
+		git \
+		imagemagick \
 		libicu-dev \
 		libapache2-mod-rpaf \
 		sysvinit-utils \
@@ -55,10 +57,10 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-RUN set -x; \
-	apt-get update \
-	&& apt-get install -y --no-install-recommends imagemagick \
-	&& rm -rf /var/lib/apt/lists/*
+# RUN set -x; \
+	# apt-get update \
+	# && apt-get install -y --no-install-recommends imagemagick \
+	# && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite
 

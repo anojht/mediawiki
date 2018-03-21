@@ -23,6 +23,7 @@ RUN set -x; \
 		g++ \
 		git \
 		imagemagick \
+		libicu52 \
 		libicu-dev \
 		libapache2-mod-rpaf \
 		sysvinit-utils \

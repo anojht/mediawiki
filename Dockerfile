@@ -35,8 +35,10 @@ RUN set -x; \
 	&& rm -rf /var/lib/apt/lists/*
 
 # RUN docker-php-ext-configure intl \
-# RUN docker-php-ext-install zlib; exit 0
-# RUN cp /usr/src/php/ext/zlib/config0.m4 /usr/src/php/ext/zlib/config.m4
+RUN docker-php-ext-install zlib; exit 0
+
+RUN cp /usr/src/php/ext/zlib/config0.m4 /usr/src/php/ext/zlib/config.m4
+
 RUN docker-php-ext-install mbstring mysqli opcache intl zlib mcrypt \
 && docker-php-ext-enable mysqli opcache zlib mbstring intl mcrypt
 

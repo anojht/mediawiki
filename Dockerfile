@@ -22,7 +22,6 @@ RUN set -x; \
 	&& apt-get install -y --no-install-recommends \
 		g++ \
 		git \
-		imagemagick \
 		libicu52 \
 		libicu-dev \
 		libapache2-mod-rpaf \
@@ -30,6 +29,8 @@ RUN set -x; \
 		libssl-dev \
 		libcurl4-openssl-dev \
 		pkg-config \
+	&& pecl install intl \
+	&& echo extension=intl.so >> /usr/local/etc/php/conf.d/ext-intl.ini \
 	&& apt-key advanced --keyserver keys.gnupg.net --recv-keys 90E9F83F22250DD7 \
         && echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list \
         && apt-get install -y --no-install-recommends apt-transport-https \
@@ -38,11 +39,10 @@ RUN set -x; \
 	&& apt-get purge -y --auto-remove g++ libicu-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-configure intl \
-RUN docker-php-ext-install zlib; exit 0
-RUN cp /usr/src/php/ext/zlib/config0.m4 /usr/src/php/ext/zlib/config.m4
-RUN docker-php-ext-install mysqli opcache zlib mbstring intl mcrypt
-# && echo extension=intl.so >> /usr/local/etc/php/conf.d/ext-intl.ini \
+# RUN docker-php-ext-configure intl \
+# RUN docker-php-ext-install zlib; exit 0
+# RUN cp /usr/src/php/ext/zlib/config0.m4 /usr/src/php/ext/zlib/config.m4
+RUN docker-php-ext-install mysqli opcache zlib mbstring mcrypt
 # && docker-php-ext-enable mysqli opcache curl json zlib mbstring intl mcrypt
 
 RUN pecl channel-update pecl.php.net \
@@ -58,10 +58,10 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-# RUN set -x; \
-	# apt-get update \
-	# && apt-get install -y --no-install-recommends imagemagick \
-	# && rm -rf /var/lib/apt/lists/*
+RUN set -x; \
+	apt-get update \
+	&& apt-get install -y --no-install-recommends imagemagick \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite
 

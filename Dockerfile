@@ -32,7 +32,7 @@ RUN set -x; \
         && apt-get install -y --no-install-recommends apt-transport-https \
         && apt-get update \
         && apt-get install -y --no-install-recommends parsoid \
-	&& apt-get purge -y --auto-remove g++ libicu-dev \
+	# && apt-get purge -y --auto-remove g++ libicu-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 # RUN docker-php-ext-configure intl \

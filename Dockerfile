@@ -22,7 +22,6 @@ RUN set -x; \
 	&& apt-get install -y --no-install-recommends \
 		g++ \
 		git \
-		imagemagick \
 		libicu-dev \
 		libapache2-mod-rpaf \
 		sysvinit-utils \
@@ -32,14 +31,13 @@ RUN set -x; \
         && apt-get install -y --no-install-recommends apt-transport-https \
         && apt-get update \
         && apt-get install -y --no-install-recommends parsoid \
-	# && apt-get purge -y --auto-remove g++ libicu-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 # RUN docker-php-ext-configure intl \
 # RUN docker-php-ext-install zlib; exit 0
 # RUN cp /usr/src/php/ext/zlib/config0.m4 /usr/src/php/ext/zlib/config.m4
-RUN docker-php-ext-install mbstring mysqli opcache intl
-# && docker-php-ext-enable mysqli opcache curl json zlib mbstring intl mcrypt
+RUN docker-php-ext-install mbstring mysqli opcache intl curl json zlib mcrypt \
+&& docker-php-ext-enable mysqli opcache curl json zlib mbstring intl mcrypt
 
 RUN pecl channel-update pecl.php.net \
 	&& pecl install apcu-5.1.8 \
@@ -54,10 +52,11 @@ RUN { \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-# RUN set -x; \
-	# apt-get update \
-	# && apt-get install -y --no-install-recommends imagemagick \
-	# && rm -rf /var/lib/apt/lists/*
+RUN set -x; \
+	apt-get update \
+	&& apt-get install -y --no-install-recommends imagemagick \
+	&& apt-get purge -y --auto-remove g++ libicu-dev \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite
 

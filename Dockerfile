@@ -23,6 +23,7 @@ RUN set -x; \
 		g++ \
 		git \
 		libicu-dev \
+		libcurl4-openssl-dev \
 		libapache2-mod-rpaf \
 		sysvinit-utils \
 		python \
@@ -55,7 +56,7 @@ RUN { \
 RUN set -x; \
 	apt-get update \
 	&& apt-get install -y --no-install-recommends imagemagick \
-	&& apt-get purge -y --auto-remove g++ libicu-dev \
+	&& apt-get purge -y --auto-remove g++ libicu-dev libcurl4-openssl-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite

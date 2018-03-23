@@ -89,5 +89,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 RUN set -x; \
 	chmod +x /entrypoint.sh
 
+RUN echo $(grep $(hostname) /etc/hosts | cut -f1) wiki.astronetwork.duckdns.org >> /etc/hosts
+
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["apache2-foreground"]

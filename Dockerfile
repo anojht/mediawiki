@@ -41,8 +41,8 @@ RUN docker-php-ext-install zlib; exit 0
 
 RUN cp /usr/src/php/ext/zlib/config0.m4 /usr/src/php/ext/zlib/config.m4
 
-RUN docker-php-ext-install mbstring mysqli opcache intl zlib mcrypt \
-&& docker-php-ext-enable mysqli opcache zlib mbstring intl mcrypt
+RUN docker-php-ext-install mbstring mysqli opcache intl zlib mcrypt sockets \
+&& docker-php-ext-enable mysqli opcache zlib mbstring intl mcrypt sockets
 
 RUN pecl channel-update pecl.php.net \
 	&& pecl install apcu-5.1.8 \

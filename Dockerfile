@@ -13,11 +13,11 @@ RUN set -x; \
 	&& cd /tmp \
 	&& curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh \
 	&& chmod +x nodesource_setup.sh \
-	&& ./nodesource_setup.sh \
-	&& apt-get install nodejs build-essential \
 	&& wget "https://www.dotdeb.org/dotdeb.gpg" \
 	&& apt-key add dotdeb.gpg \
 	&& rm dotdeb.gpg \
+	&& ./nodesource_setup.sh \
+	&& apt-get install nodejs build-essential \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		g++ \

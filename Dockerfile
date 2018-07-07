@@ -1,8 +1,8 @@
 FROM php:7.0-apache
 MAINTAINER Anojh Thayaparan <athayapa@sfu.ca>
 
-ENV MEDIAWIKI_VERSION 1.29
-ENV MEDIAWIKI_FULL_VERSION 1.29.1
+ENV MEDIAWIKI_VERSION 1.31
+ENV MEDIAWIKI_FULL_VERSION 1.31.0
 
 RUN set -x; \
 	apt-get update \

@@ -8,6 +8,7 @@ RUN set -x; \
 	apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		wget \
+		gnupg2 \
 	&& echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
 	&& echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list \
 	&& cd /tmp \

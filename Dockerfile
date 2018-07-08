@@ -18,7 +18,7 @@ RUN set -x; \
 	&& apt-key add dotdeb.gpg \
 	&& rm dotdeb.gpg \
 	&& ./nodesource_setup.sh \
-	&& apt-get install nodejs build-essential \
+	&& apt-get install -y nodejs build-essential \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		g++ \

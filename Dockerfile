@@ -30,6 +30,7 @@ RUN set -x; \
 		libapache2-mod-rpaf \
 		sysvinit-utils \
 		python \
+		dirmngr \
 	&& apt-key advanced --keyserver keys.gnupg.net --recv-keys 90E9F83F22250DD7 \
         && echo "deb https://releases.wikimedia.org/debian jessie-mediawiki main" | tee /etc/apt/sources.list.d/parsoid.list \
         && apt-get install -y --no-install-recommends apt-transport-https \

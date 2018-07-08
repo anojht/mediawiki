@@ -5,6 +5,8 @@ others.
 
 https://wikipedia.org/wiki/MediaWiki
 
+# This container is ready for HTTPS configuration and use of Visual Editor extension since the necessary dependencies are installed.
+
 # How to use this image
 `docker run --name some-mediawiki --link some-mysql:mysql -d anojht/mediawiki`
 The following environment variables are also honored for configuring your
@@ -20,6 +22,12 @@ If the `MEDIAWIKI_DB_NAME` specified does not already exist in the given MySQL
 container, it will be created automatically upon container startup, provided
 that the `MEDIAWIKI_DB_USER` specified has the necessary permissions to create
 it.
+
+For easy acces to configuration and to persist your uploads and changes, mount the 
+following container paths to your host:
+`-v '/your-host-path/wiki':'/var/www/html':'rw'`
+`-v '/your-host-path/apache2':'/etc/apache2':'rw'`
+`-v '/your-host-path/parsoid':'/etc/mediawiki/parsoid':'rw'`
 
 To use with an external database server, use `MEDIAWIKI_DB_HOST` (along with
 `MEDIAWIKI_DB_USER` and `MEDIAWIKI_DB_PASSWORD` if necessary):
